@@ -29,7 +29,7 @@ class CreateNewUser implements CreatesNewUsers
 
         return User::create([
             'name' => $input['name'],
-            'slug' => Str::slug($input['name']),
+            'username' => Str::slug($input['name']),
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
             // Memberikan nilai default role_id = 3 / Public
