@@ -1,0 +1,94 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\StoreUserRequest;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Hash;
+
+class ManageUserController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        if (Gate::denies('admin')) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $admins = User::where('role_id', 1)->get();
+        $creators = User::where('role_id', 2)->get();
+        $publics = User::where('role_id', 3)->get();
+        $title = 'Total Users : '. count($admins) + count($creators) + count($publics);
+
+        return view('admin.users.index', compact('admins', 'creators', 'publics', 'title'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(User $user)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(User $user)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, User $user)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id)
+    {
+        try {
+            $user = User::findOrFail($id);
+
+            // Cek apakah pengguna memiliki postingan terkait
+            // if ($user->posts()->exists()) {
+            //     return redirect()->route('admin.users.index')->with('error', 'Failed to delete. User has related posts.');
+            // }
+
+            $user->delete();
+
+            return redirect()->route('admin.users.index')->with('status', 'User Deleted Successfully!');
+        } catch (QueryException $e) {
+            return redirect()->route('admin.users.index')->with('error', 'Failed to delete user. Foreign key constraint error: ' . $e->getMessage());
+        }
+    }
+}

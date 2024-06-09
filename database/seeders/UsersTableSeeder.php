@@ -23,48 +23,48 @@ class UsersTableSeeder extends Seeder
         $users = [
             [
                 'id' => 1,
-                'name' => '',
-                'email' => '@gmail.com',
-                'slug' => '',
+                'name' => 'Joko Hermano',
+                'email' => 'jokohermano@gmail.com',
+                'username' => 'joko-hermano',
                 'role_id' => 1,
-                'password' => '',
-                'original_filename' => 'aka.jpg',
+                'password' => 'joko-hermano123',
+                'original_filename' => 'black-cat.jpeg',
             ],
             [
                 'id' => 2,
-                'name' => '',
-                'email' => '@gmail.com',
+                'name' => 'Harun',
+                'email' => 'harun@gmail.com',
                 'role_id' => 2,
-                'slug' => '',
-                'password' => '',
-                'original_filename' => '.jpg',
+                'username' => 'harun',
+                'password' => 'harunharun123',
+                'original_filename' => 'black-cat.jpeg',
             ],
             [
                 'id' => 3,
-                'name' => '',
-                'email' => '@gmail.com',
+                'name' => 'Nurdin',
+                'email' => 'nurdin@gmail.com',
                 'role_id' => 3,
-                'slug' => '',
-                'password' => '',
-                'original_filename' => '.jpg',
+                'username' => 'nurdin',
+                'password' => 'nurdin123',
+                'original_filename' => 'black-cat.jpeg',
             ],
             [
                 'id' => 4,
-                'name' => '',
-                'email' => '@gmail.com',
+                'name' => 'Koratan',
+                'email' => 'koratan@gmail.com',
                 'role_id' => 2,
-                'slug' => '',
-                'password' => '',
-                'original_filename' => '.jpg',
+                'username' => 'koratan',
+                'password' => 'koratan123',
+                'original_filename' => 'black-cat.jpeg',
             ],
             [
                 'id' => 5,
-                'name'=> '',
-                'email' => '@gmail.com',
+                'name'=> 'Rinson',
+                'email' => 'rinson@gmail.com',
                 'role_id' => 3,
-                'slug' => '',
-                'password' => '',
-                'original_filename' => '.jpg',
+                'username' => 'rinson',
+                'password' => 'rinson123',
+                'original_filename' => 'black-cat.jpeg',
             ]
         ];
 
@@ -72,7 +72,7 @@ class UsersTableSeeder extends Seeder
             $randomFilename = Str::random(40) . '.jpg';
 
             // Tentukan path sumber dan tujuan
-            $sourcePath = public_path('images/' . $user['original_filename']);
+            $sourcePath = public_path('profile-images/' . $user['original_filename']);
             $destinationPath = public_path('storage/profile-photos/' . $randomFilename);
 
             // Pastikan direktori tujuan ada
@@ -95,7 +95,7 @@ class UsersTableSeeder extends Seeder
                 'name' => $user['name'],
                 'email' => $user['email'],
                 'role_id' => $user['role_id'],
-                'slug' => $user['slug'],
+                'username' => $user['username'],
                 'profile_photo_path' => 'profile-photos/' . $randomFilename,
                 'email_verified_at' => now(),
                 'password' => Hash::make($user['password']),

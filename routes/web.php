@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ManageUserController;
 
 Route::get('/', function () {
     return view('welcome', ['title' => 'This Is Home']);
@@ -19,9 +20,11 @@ Route::middleware([
     // Middleware Admin
     Route::group(['middleware' => 'role:admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
         // Testing Page
-        Route::get('/users', function () {
-            return view('admin.users.index', ['title' => 'This Is Admin']);
-        })->name('users.index');
+        // Route::get('/users', function () {
+        //     return view('admin.users.index', ['title' => 'This Is Admin']);
+        // })->name('users.index');
+
+        Route::resource('users', ManageUserController::class)->parameters(['users' => 'user:username']);
         });
 
     // Middleware Creator
