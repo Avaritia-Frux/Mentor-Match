@@ -36,15 +36,31 @@ class ManageUserController extends Controller
      */
     public function create()
     {
-        //
+        if (Gate::denies('admin')) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $title = 'Add User';
+        return view('admin.users.create', compact('title'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        //
+
+        $validatedData = $request->validated();
+
+        $validatedData['username'] = Str::slug($validatedData['name']);
+        $validatedData['password'] = Hash::make($validatedData['password']);
+
+        $user = User::create($validatedData);
+
+        // Assuming you have a roles relationship method in User model
+        $user->Roles()->hasMacro($request->role_id);
+
+        return redirect()->route('admin.users.index')->with('status', 'User Created Successfully!');
     }
 
     /**
