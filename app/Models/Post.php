@@ -13,7 +13,7 @@ class Post extends Model
     protected $id = 'id';
     protected $fillable = ['title', 'slug', 'post_image_path', 'body', 'creator_id', 'category_id', 'company_id'];
 
-    public function author(): BelongsTo
+    public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'creator_id');
     }
@@ -26,5 +26,10 @@ class Post extends Model
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class, 'company_id');
+    }
+
+    public function like(): BelongsTo
+    {
+        return $this->belongsTo(Post_like::class, 'post_id');
     }
 }

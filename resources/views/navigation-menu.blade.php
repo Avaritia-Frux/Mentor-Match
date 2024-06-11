@@ -29,8 +29,16 @@
 
                 @can('creator')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('creator.users.index') }}" :active="request()->routeIs('creator.users.index')">
-                        {{ __('For Creator') }}
+                    <x-nav-link href="{{ route('creator.posts.index') }}" :active="request()->routeIs('creator.posts.index')">
+                        {{ __('Posts By Creator') }}
+                    </x-nav-link>
+                </div>
+                @endcan
+
+                @can('creator')
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('creator.all-posts.index') }}" :active="request()->routeIs('creator.all-posts.index')">
+                        {{ __('All Creator Posts') }}
                     </x-nav-link>
                 </div>
                 @endcan
@@ -187,8 +195,14 @@
             @endcan
 
             @can('creator')
-            <x-responsive-nav-link href="{{ route('creator.users.index') }}" :active="request()->routeIs('creator.users.index')">
-                {{ __('For Creator') }}
+            <x-responsive-nav-link href="{{ route('creator.posts.index') }}" :active="request()->routeIs('creator.posts.index')">
+                {{ __('Posts By Creator') }}
+            </x-responsive-nav-link>
+            @endcan
+
+            @can('creator')
+            <x-responsive-nav-link href="{{ route('creator.all-posts.index') }}" :active="request()->routeIs('creator.all-posts.index')">
+                {{ __('All Creator Posts') }}
             </x-responsive-nav-link>
             @endcan
 

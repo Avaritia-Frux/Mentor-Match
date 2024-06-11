@@ -18,7 +18,7 @@
         rows.forEach(row => tbody.appendChild(row));
     }
 
-    // search table
+    // search User
     function searchTable() {
         const input = document.getElementById('searchInput');
         const filter = input.value.toLowerCase();
@@ -49,4 +49,40 @@
     setTimeout(() => {
         document.querySelector('.alert-dismissible').remove();
     }, 2000);
+
+    // search posts
+    document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById('search');
+            const postItems = document.querySelectorAll('.post-item');
+
+            searchInput.addEventListener('input', function () {
+                const searchValue = searchInput.value.toLowerCase();
+
+                postItems.forEach(function (postItem) {
+                    const title = postItem.getAttribute('data-title').toLowerCase();
+                    const creator = postItem.getAttribute('data-creator').toLowerCase();
+                    const category = postItem.getAttribute('data-category').toLowerCase();
+                    const company = postItem.getAttribute('data-company').toLowerCase();
+
+                    if (title.includes(searchValue) || creator.includes(searchValue) ||
+                        category.includes(searchValue) || company.includes(searchValue)) {
+                        postItem.style.display = 'block';
+                    } else {
+                        postItem.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+    // preview image create edit post
+    function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function(){
+                const output = document.getElementById('image_preview');
+                output.src = reader.result;
+                output.style.display = 'block';
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
 </script>

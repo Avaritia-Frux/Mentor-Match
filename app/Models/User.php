@@ -76,4 +76,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class, 'creator_id');
     }
+
+    public function like(): BelongsTo
+    {
+        return $this->belongsTo(Post_like::class, 'user_id');
+    }
 }

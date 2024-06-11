@@ -4,36 +4,30 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Role;
+use App\Models\Category;
 
-class RolesTableSeeder extends Seeder
+class CategoriesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $roles = [
+        $category = [
             ['id' => 1,
-            'name' => 'Admin',
-            'slug' => 'admin',
+            'name' => 'Work From Home',
+            'slug' => 'work-from-home',
             'created_at' => now(),
             'updated_at' => now()
             ],
             ['id' => 2,
-            'name' => 'Creator',
-            'slug' => 'creator',
-            'created_at' => now(),
-            'updated_at' => now()
-            ],
-            ['id' => 3,
-            'name' => 'Public',
-            'slug' => 'public',
+            'name' => 'Work From Office',
+            'slug' => 'work-from-office',
             'created_at' => now(),
             'updated_at' => now()
             ],
         ];
 
-        Role::insert($roles);
+        Category::insert($category);
     }
 }

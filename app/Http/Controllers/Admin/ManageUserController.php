@@ -96,9 +96,9 @@ class ManageUserController extends Controller
             $user = User::findOrFail($id);
 
             // Cek apakah pengguna memiliki postingan terkait
-            // if ($user->posts()->exists()) {
-            //     return redirect()->route('admin.users.index')->with('error', 'Failed to delete. User has related posts.');
-            // }
+            if ($user->posts()->exists()) {
+                return redirect()->route('admin.users.index')->with('error', 'Failed to delete. User has related posts.');
+            }
 
             $user->delete();
 
