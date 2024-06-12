@@ -12,24 +12,39 @@
                 <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">{{ $post->title }}</h3>
-                        <a href="{{ route('creator.posts.edit', $post) }}" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md">
-                            Edit Post
+                        <a href="{{ route('creator.posts.edit', $post) }}"
+                            class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md">
+                            <i class="fa-solid fa-pen-to-square"></i>{{ _('Edit Post') }}
                         </a>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <img src="{{ $post->post_image_path ? asset('storage/' . $post->post_image_path) : 'https://via.placeholder.com/300x200' }}"
-                                alt="{{ $post->title }}" class="h-full w-full object-cover rounded-md hover-zoom hover:opacity-75">
+                                alt="{{ $post->title }}"
+                                class="h-full w-full object-cover rounded-md hover-zoom hover:opacity-75">
                         </div>
                         <div class="space-y-4">
-                            {{-- <p class="text-sm text-gray-500 dark:text-gray-400"><strong>Creator:</strong> {{ $post->creator->name }}</p> --}}
-                            <p class="text-sm text-gray-500 dark:text-gray-400"><strong>Category:</strong> {{ $post->category->name }}</p>
-                            <p class="text-sm text-gray-500 dark:text-gray-400"><strong>Company:</strong> {{ $post->company->name }}</p>
+                            <div class="mt-2 flex justify-start items-center">
+                                <a href="{{ route('creator.posts.show.category', $post->category->slug) }}"
+                                    class="mr-1 bg-orange-500 hover:bg-orange-600 text-white p-2 rounded-md text-sm">
+                                    <i class="fa-solid fa-briefcase"></i> {{ $post->category->name }}</a>
+
+                                <a href="{{ route('creator.posts.show.company', $post->company->slug) }}"
+                                    class="mr-1 bg-green-500 hover:bg-green-600 text-white text-sm p-2 rounded-md">
+                                    <i class="fa-solid fa-building"></i> {{ $post->company->name }}</a>
+                            </div>
+                            <div class="flex justify-start items-center mt-4">
+                                <p class="text-sm text-gray-500 dark:text-gray-400 ">
+                                    {{ $post->created_at->format('F d, Y') }} {{ _('| Updated :') }}
+                                    {{ $post->updated_at->diffForHumans() }}</p>
+                            </div>
                             <p class="text-sm text-gray-500 dark:text-gray-400 mt-4">{{ $post->body }}</p>
                         </div>
                     </div>
                     <div class="mt-4">
-                        <a href="{{ route('creator.posts.index') }}" class="text-blue-500 hover:underline">Back to Posts List</a>
+                        <a href="{{ route('creator.posts.index') }}" class="text-blue-500 hover:underline">
+                        {{ _('Back') }}
+                        </a>
                     </div>
                 </div>
             </div>

@@ -39,10 +39,10 @@
                 <div class="mt-4 relative ">
                     <x-label for="role_id" class="block text-gray-700 text-sm font-bold mb-2" value="{{ __('Register as:') }}" />
                     <select name="role_id" x-model="role_id" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none  focus:border-gray-500 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600">
-                        <option selected class="text-sm">Select User Role</option>
-                        <option value="1" class="text-sm">Admin</option>
-                        <option value="2" class="text-sm">Creator</option>
-                        <option value="3" class="text-sm">Public</option>
+                        <option selected class="text-sm">{{ __('Select Role') }}</option>
+                        <option value="1" class="text-sm">{{ __('Admin') }}</option>
+                        <option value="2" class="text-sm">{{ __('Creator') }}</option>
+                        <option value="3" class="text-sm">{{ __('Public') }}</option>
                     </select>
                 </div>
 

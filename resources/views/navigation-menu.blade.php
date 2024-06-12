@@ -45,8 +45,16 @@
 
                 @can('public')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('public.users.index') }}" :active="request()->routeIs('public.users.index')">
-                        {{ __('For Public') }}
+                    <x-nav-link href="{{ route('public.posts.index') }}" :active="request()->routeIs('public.posts.index')">
+                        {{ __('Programs') }}
+                    </x-nav-link>
+                </div>
+                @endcan
+
+                @can('public')
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('public.favorite-posts.index') }}" :active="request()->routeIs('public.favorite-posts.index')">
+                        {{ __('Favorite Programs') }}
                     </x-nav-link>
                 </div>
                 @endcan
@@ -207,8 +215,14 @@
             @endcan
 
             @can('public')
-            <x-responsive-nav-link href="{{ route('public.users.index') }}" :active="request()->routeIs('public.users.index')">
-                {{ __('For Public') }}
+            <x-responsive-nav-link href="{{ route('public.posts.index') }}" :active="request()->routeIs('public.posts.index')">
+                {{ __('Programs') }}
+            </x-responsive-nav-link>
+            @endcan
+
+            @can('public')
+            <x-responsive-nav-link href="{{ route('public.favorite-posts.index') }}" :active="request()->routeIs('public.favorite-posts.index')">
+                {{ __('Favorite Programs') }}
             </x-responsive-nav-link>
             @endcan
         </div>

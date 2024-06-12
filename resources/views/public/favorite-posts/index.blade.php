@@ -2,7 +2,7 @@
     <x-slot name="header">
         {{-- Menambahkan pt-16 --}}
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight pt-16">
-            {{ __('All Creator Posts') }}
+            {{ __('Favorite Programs') }}
         </h2>
     </x-slot>
 
@@ -24,25 +24,26 @@
 
                     {{-- Formulir Pencarian --}}
                     <div class="mb-4 relative">
-                        <input type="text" id="search" placeholder="Search posts..."
+                        <input type="text" id="search" placeholder="Search Programs..."
                             class="border border-gray-300 rounded-md px-4 py-2 w-full pl-10">
                         <i
                             class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                     </div>
 
+                    @if ($posts->count() > 0)
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="posts-container">
                         @foreach ($posts as $post)
                             <div class="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden shadow-lg post-item"
                                 data-title="{{ $post->title }}" data-creator="{{ $post->creator->name }}"
                                 data-category="{{ $post->category->name }}" data-company="{{ $post->company->name }}">
                                 @if ($post->post_image_path)
-                                    <a href="{{ route('creator.all-posts.show', $post) }}">
+                                    <a href="{{ route('public.favorite-posts.show', $post) }}">
                                         <img src="{{ asset('storage/' . $post->post_image_path) }}"
                                             alt="{{ $post->title }}"
                                             class="w-full h-48 object-cover hover-zoom hover:opacity-75">
                                     </a>
                                 @else
-                                    <a href="{{ route('creator.all-posts.show', $post) }}">
+                                    <a href="{{ route('public.favorite-posts.show', $post) }}">
                                         <img src="https://via.placeholder.com/300x200" alt="{{ $post->title }}"
                                             class="w-full h-48 object-cover hover-zoom hover:opacity-75">
                                     </a>
@@ -50,16 +51,13 @@
                                 <div class="p-4">
                                     <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
                                         {{ $loop->iteration }}. {{ $post->title }}</h3>
-                                    <a href="{{ route('creator.all-posts.show.creator', $post->creator->username) }}"
-                                        class="mr-2 bg-violet-500 hover:bg-violet-600 text-white p-2 text-sm rounded-md">
-                                        <i class="fa-solid fa-circle-user"></i> {{ $post->creator->name }}</a>
 
                                     <div class="mt-2 flex justify-start items-center">
-                                        <a href="{{ route('creator.all-posts.show.category', $post->category->slug) }}"
+                                        <a href="{{ route('public.favorite-posts.show.category', $post->category->slug) }}"
                                             class="mr-1 bg-orange-500 hover:bg-orange-600 text-white p-2 rounded-md text-sm">
                                             <i class="fa-solid fa-briefcase"></i> {{ $post->category->name }}</a>
 
-                                        <a href="{{ route('creator.all-posts.show.company', $post->company->slug) }}"
+                                        <a href="{{ route('public.favorite-posts.show.company', $post->company->slug) }}"
                                             class="mr-1 bg-green-500 hover:bg-green-600 text-white text-sm p-2 rounded-md">
                                             <i class="fa-solid fa-building"></i> {{ $post->company->name }}</a>
                                     </div>
@@ -74,6 +72,12 @@
                             </div>
                         @endforeach
                     </div>
+                    @else
+                    <div class="col-span-1 md:col-span-2 lg:col-span-3 text-center mt-20">
+                        <p class="text-gray-500 dark:text-gray-400 text-2xl">{{ $title }}</p>
+                        <p class="text-gray-500 dark:text-gray-400 text-lg">{{ _('Try To Add One !') }}</p>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

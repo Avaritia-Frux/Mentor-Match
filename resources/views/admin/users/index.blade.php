@@ -8,16 +8,16 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             {{-- Search Input --}}
-            <div class="-mt-8 mb-4 ml-4 mr-4 ">
+            <div class="-mt-8 mb-4 ml-4 mr-4">
                 <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for names.."
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
             </div>
             {{-- Create Button --}}
             <div class="flex justify-between items-center mb-4">
                 <div class="flex justify-start items-cente ml-4">
                     <a href="{{ route('admin.users.create') }}"
                         class="bg-blue-500 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-800 text-white font-bold py-2 px-4 rounded">
-                        {{ __('Add') }}
+                        <i class="fa-solid fa-plus"></i> {{ __('Add') }}
                         </a>
                 </div>
                 @if (session('status'))
@@ -39,9 +39,10 @@
 
                     {{-- Admins Section --}}
                     @if ($admins->count() == 0)
-                        <h4 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">No Admin</h4>
+                        <h4 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">{{ __('No Admins') }}</h4>
                     @else
-                        <h4 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">Admin:
+                        <h4 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+                            <i class="fa-solid fa-circle-user"></i> {{ __('Admin :') }}
                             {{ $admins->count() }}</h4>
                     @endif
 
@@ -50,14 +51,14 @@
                             <thead class="bg-gray-300 dark:bg-gray-700">
                                 <tr>
                                     <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer"
-                                        onclick="sortTable('admins-table', 0)">Profile</th>
+                                        onclick="sortTable('admins-table', 0)">{{ __('Profile Photo') }}</th>
                                     <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer"
-                                        onclick="sortTable('admins-table', 1)">Name</th>
+                                        onclick="sortTable('admins-table', 1)">{{ __('Name') }}</th>
                                     <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer"
-                                        onclick="sortTable('admins-table', 2)">Email</th>
+                                        onclick="sortTable('admins-table', 2)">{{ __('Email') }}</th>
                                     <th
                                         class="py-2 px-4 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        Action</th>
+                                        {{ __('Actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
@@ -74,7 +75,7 @@
                                             {{ $admin->email }}
                                         </td>
                                         @if ($admin->id == 1)
-                                            <td class="py-2 px-4 text-sm text-gray-500 dark:text-gray-300 text-center">
+                                            <td class="py-2 px-4 text-sm text-gray-500 dark:text-gray-300 text-center italic font-bold">
                                                 {{ _('Super Admin') }}
                                             </td>
                                         @else
@@ -86,7 +87,7 @@
                                                     @method('DELETE')
                                                     <button type="submit"
                                                         class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded">
-                                                        Delete
+                                                        <i class="fa-solid fa-trash"></i> {{ _('Delete') }}
                                                     </button>
                                                 </form>
                                             </td>
@@ -99,9 +100,10 @@
 
                     {{-- Creators Section --}}
                     @if ($creators->count() == 0)
-                        <h4 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">No Creator</h4>
+                        <h4 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">{{ __('No Creators') }}</h4>
                     @else
-                        <h4 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">Creator:
+                        <h4 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+                            <i class="fa-solid fa-circle-user"></i> {{ __('Creator :') }}
                             {{ $creators->count() }}</h4>
                     @endif
                     <div class="overflow-x-auto table-wrapper">
@@ -109,14 +111,14 @@
                             <thead class="bg-gray-300 dark:bg-gray-700">
                                 <tr>
                                     <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer"
-                                        onclick="sortTable('creators-table', 0)">Profile</th>
+                                        onclick="sortTable('creators-table', 0)">{{ __('Profile Photo')  }}</th>
                                     <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer"
-                                        onclick="sortTable('creators-table', 1)">Name</th>
+                                        onclick="sortTable('creators-table', 1)">{{ __('Name') }}</th>
                                     <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer"
-                                        onclick="sortTable('creators-table', 2)">Email</th>
+                                        onclick="sortTable('creators-table', 2)">{{ __('Email') }}</th>
                                     <th
                                         class="py-2 px-4 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        Action</th>
+                                        {{ __('Actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
@@ -139,7 +141,7 @@
                                                 @method('DELETE')
                                                 <button type="submit"
                                                     class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded">
-                                                    Delete
+                                                    <i class="fa-solid fa-trash"></i> {{ _('Delete') }}
                                                 </button>
                                             </form>
                                         </td>
@@ -151,9 +153,10 @@
 
                     {{-- Publics Section --}}
                     @if ($publics->count() == 0)
-                        <h4 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">No Public</h4>
+                        <h4 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">{{ __('No Publics') }}</h4>
                     @else
-                        <h4 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">Public:
+                        <h4 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+                            <i class="fa-solid fa-circle-user"></i> {{ __('Public :') }}
                             {{ $publics->count() }}</h4>
                     @endif
                     <div class="overflow-x-auto table-wrapper">
@@ -161,14 +164,14 @@
                             <thead class="bg-gray-300 dark:bg-gray-700">
                                 <tr>
                                     <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer"
-                                        onclick="sortTable('publics-table', 0)">Profile</th>
+                                        onclick="sortTable('publics-table', 0)">{{ __('Profile Photo') }}</th>
                                     <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer"
-                                        onclick="sortTable('publics-table', 1)">Name</th>
+                                        onclick="sortTable('publics-table', 1)">{{ __('Name') }}</th>
                                     <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer"
-                                        onclick="sortTable('publics-table', 2)">Email</th>
+                                        onclick="sortTable('publics-table', 2)">{{ __('Email') }}</th>
                                     <th
                                         class="py-2 px-4 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        Action</th>
+                                        {{ __('Actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
@@ -192,7 +195,7 @@
                                                 @method('DELETE')
                                                 <button type="submit"
                                                     class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded">
-                                                    Delete
+                                                    <i class="fa-solid fa-trash"></i> {{ _('Delete') }}
                                                 </button>
                                             </form>
                                         </td>

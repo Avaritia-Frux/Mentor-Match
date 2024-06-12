@@ -12,7 +12,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\ImageManagerStatic as Image;
 
 class PostController extends Controller
 {
@@ -26,7 +25,11 @@ class PostController extends Controller
         }
 
         $posts = Post::where('creator_id', Auth::user()->id)->get();
-        $title = 'Total Posts By You : '. count($posts);
+        if (count($posts) > 0) {
+            $title = 'Total Posts By You : '. count($posts);
+        } else {
+            $title = 'Posts Not Found';
+        }
         return view('creator.posts.index', compact('posts', 'title'));
 
     }

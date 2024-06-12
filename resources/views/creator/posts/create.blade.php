@@ -65,10 +65,10 @@
 
                         <div class="flex justify-between items-center">
                             <a href="{{ route('creator.posts.index') }}" class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded-md">
-                                {{ __('Cancel') }}
+                            <i class="fa-solid fa-xmark"></i> {{ __('Cancel') }}
                             </a>
                             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md">
-                                {{ __('Create Post') }}
+                            <i class="fa-solid fa-plus"></i> {{ __('Create Post') }}
                             </button>
                         </div>
                     </form>
