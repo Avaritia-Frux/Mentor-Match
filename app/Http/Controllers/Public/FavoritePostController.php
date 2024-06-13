@@ -46,7 +46,7 @@ class FavoritePostController extends Controller
         $like->post_id = $post->id;
         $like->user_id = Auth::user()->id;
         $like->save();
-        return redirect()->back();
+        return redirect()->back()->with('status', 'You have liked this program');
     }
 
     public function unlike($slug)
@@ -60,7 +60,7 @@ class FavoritePostController extends Controller
         if ($like) {
             $like->delete();
         }
-        return redirect()->back();
+        return redirect()->back()->with('status', 'You have unliked this program');
     }
 
     /**

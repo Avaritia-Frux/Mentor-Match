@@ -12,6 +12,8 @@ class Post extends Model
     protected $table = 'posts';
     protected $id = 'id';
     protected $fillable = ['title', 'slug', 'post_image_path', 'body', 'creator_id', 'category_id', 'company_id'];
+    // Solve N +1 problem by eager loading
+    protected $with = ['creator', 'category', 'company'];
 
     public function creator(): BelongsTo
     {

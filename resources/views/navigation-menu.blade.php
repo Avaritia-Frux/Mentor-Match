@@ -20,43 +20,41 @@
                 </div>
 
                 @can('admin')
+
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('admin.users.index') }}" :active="request()->routeIs('admin.users.index')">
                         {{ __('Users') }}
                     </x-nav-link>
                 </div>
-                @endcan
 
-                @can('creator')
+                @elsecan('creator')
+
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('creator.posts.index') }}" :active="request()->routeIs('creator.posts.index')">
                         {{ __('Posts By Creator') }}
                     </x-nav-link>
                 </div>
-                @endcan
 
-                @can('creator')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('creator.all-posts.index') }}" :active="request()->routeIs('creator.all-posts.index')">
                         {{ __('All Creator Posts') }}
                     </x-nav-link>
                 </div>
-                @endcan
 
-                @can('public')
+                @elsecan('public')
+
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('public.posts.index') }}" :active="request()->routeIs('public.posts.index')">
                         {{ __('Programs') }}
                     </x-nav-link>
                 </div>
-                @endcan
 
-                @can('public')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('public.favorite-posts.index') }}" :active="request()->routeIs('public.favorite-posts.index')">
                         {{ __('Favorite Programs') }}
                     </x-nav-link>
                 </div>
+
                 @endcan
             </div>
 
@@ -197,33 +195,31 @@
             </x-responsive-nav-link>
 
             @can('admin')
+
             <x-responsive-nav-link href="{{ route('admin.users.index') }}" :active="request()->routeIs('admin.users.index')">
                 {{ __('Users') }}
             </x-responsive-nav-link>
-            @endcan
 
-            @can('creator')
+            @elsecan('creator')
+
             <x-responsive-nav-link href="{{ route('creator.posts.index') }}" :active="request()->routeIs('creator.posts.index')">
                 {{ __('Posts By Creator') }}
             </x-responsive-nav-link>
-            @endcan
 
-            @can('creator')
             <x-responsive-nav-link href="{{ route('creator.all-posts.index') }}" :active="request()->routeIs('creator.all-posts.index')">
                 {{ __('All Creator Posts') }}
             </x-responsive-nav-link>
-            @endcan
 
-            @can('public')
+            @elsecan('public')
+
             <x-responsive-nav-link href="{{ route('public.posts.index') }}" :active="request()->routeIs('public.posts.index')">
                 {{ __('Programs') }}
             </x-responsive-nav-link>
-            @endcan
 
-            @can('public')
             <x-responsive-nav-link href="{{ route('public.favorite-posts.index') }}" :active="request()->routeIs('public.favorite-posts.index')">
                 {{ __('Favorite Programs') }}
             </x-responsive-nav-link>
+
             @endcan
         </div>
 

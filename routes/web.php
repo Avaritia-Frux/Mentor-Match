@@ -9,7 +9,7 @@ use App\Http\Controllers\Public\PublicPostController;
 use App\Http\Controllers\Public\FavoritePostController;
 
 Route::get('/', function () {
-    return view('welcome', ['title' => 'This Is Home']);
+    return view('welcome', ['title' => 'Mentor Match | Home']);
 })->name('welcome');
 
 Route::middleware([
@@ -18,7 +18,7 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard', ['title' => 'This Is Dashboard']);
+        return view('dashboard', ['title' => 'Welcome, '. auth()->user()->name. ' !']);
     })->name('dashboard');
 
     // Middleware Admin

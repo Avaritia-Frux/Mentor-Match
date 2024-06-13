@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout :title="'Mentor Match | Verify Email'">
     <x-authentication-card>
         <x-slot name="logo">
             <x-authentication-card-logo />

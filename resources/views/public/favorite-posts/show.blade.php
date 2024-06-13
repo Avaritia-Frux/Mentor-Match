@@ -8,6 +8,14 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="flex justify-end space-x-2">
+                @if (session('status'))
+                    <div class="mb-4 alert alert-success alert-dismissible bg-green-600 dark:bg-green-800 bg-opacity-50 text-white p-2 rounded-md text-sm"
+                        role="alert" style="max-width: 300px;">
+                        {{ session('status') }}
+                    </div>
+                @endif
+            </div>
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                     <div class="flex justify-between items-center mb-4">
@@ -45,7 +53,7 @@
                                     {{ $post->created_at->format('F d, Y') }} {{ _('| Updated :') }}
                                     {{ $post->updated_at->diffForHumans() }}</p>
                             </div>
-                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-4">{{ $post->body }}</p>
+                            <p class="text-sm text-justify text-gray-500 dark:text-gray-400 mt-4">{{ $post->body }}</p>
                         </div>
                     </div>
                     <div class="mt-4">

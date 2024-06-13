@@ -18,8 +18,19 @@
                             <img src="{{ $post->post_image_path ? asset('storage/' . $post->post_image_path) : 'https://via.placeholder.com/300x200' }}"
                                 alt="{{ $post->title }}" class="h-full w-full object-cover rounded-md hover-zoom hover:opacity-75">
                         </div>
-                        <div class="space-y-4">
-                            <div class="mt-2 flex justify-start items-center">
+                        <div class="container">
+                            <div class="mt-2 mb-1 flex justify-start items-center">
+                                @if ($likes > 0)
+                                <p  class="bg-red-500  text-white text-sm p-2 rounded-md">
+                                    <i class="fa-solid fa-heart"></i> {{ ' Likes : ' . $likes }}
+                                    </p>
+                                @else
+                                <p  class="bg-red-500  text-white text-sm p-2 rounded-md">
+                                    <i class="fa-regular fa-heart"></i> {{ ' No Likes'}}
+                                    </p>
+                                @endif
+                            </div>
+                            <div class="flex justify-start items-center">
                                 <a href="{{ route('creator.all-posts.show.category', $post->category->slug) }}"
                                     class="mr-1 bg-orange-500 hover:bg-orange-600 text-white p-2 rounded-md text-sm">
                                     <i class="fa-solid fa-briefcase"></i> {{ $post->category->name }}</a>
@@ -33,7 +44,7 @@
                                     {{ $post->created_at->format('F d, Y') }} {{ _('| Updated :') }}
                                     {{ $post->updated_at->diffForHumans() }}</p>
                             </div>
-                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-4">{{ $post->body }}</p>
+                            <p class="text-sm text-justify text-gray-500 dark:text-gray-400 mt-4">{{ $post->body }}</p>
                         </div>
                     </div>
                     <div class="mt-4">

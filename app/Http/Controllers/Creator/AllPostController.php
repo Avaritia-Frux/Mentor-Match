@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Creator;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Post_like;
 use App\Models\Company;
 use App\Models\Category;
 use Illuminate\Support\Str;
@@ -54,7 +55,8 @@ class AllPostController extends Controller
             abort(403, 'Unauthorized action.');
         }
         $title = 'Detail Post : '. $post->title;
-        return view('creator.all-posts.show', compact('post', 'title'));
+        $likes = Post_like::where('post_id', $post->id)->count();
+        return view('creator.all-posts.show', compact('post', 'title', 'likes'));
     }
 
 
