@@ -2,9 +2,10 @@
 
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ManageUserController;
+use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Creator\PostController;
 use App\Http\Controllers\Creator\AllPostController;
-use App\Http\Controllers\Admin\ManageUserController;
 use App\Http\Controllers\Public\PublicPostController;
 use App\Http\Controllers\Public\FavoritePostController;
 
@@ -30,6 +31,7 @@ Route::middleware([
 
         // Manage User
         Route::resource('users', ManageUserController::class)->parameters(['users' => 'user:username']);
+        Route::resource('companies', CompanyController::class)->parameters(['companies' => 'company:slug']);
         });
 
     // Middleware Creator
